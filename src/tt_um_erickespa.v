@@ -36,16 +36,16 @@ module tt_um_erickespa (
     reg [1:0] Y;
     
         // Registro de estado moore
-    always @(posedge clk or posedge rst_n) begin
-        if (rst_n)
-            mo_state <= mo_S0;
-        else
-            mo_state <= mo_nextstate;
-    end
+ always @(posedge clk or negedge rst_n) begin
+    if (!rst_n)                   
+        mo_state <= mo_S0;
+    else
+        mo_state <= mo_nextstate;
+end
     
         // Registro de estado mealy
-    always @(posedge clk or posedge rst_n) begin
-        if (rst_n)
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
             me_state <= me_S0;
         else
             me_state <= me_next_state;
