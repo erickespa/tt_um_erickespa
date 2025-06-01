@@ -54,6 +54,7 @@ end
     
      // Lógica de transición de estados moore
     always @(*) begin
+        mo_nextstate = mo_state;
         case (mo_state)
             mo_S0: begin
                 if (ui_in[0])
