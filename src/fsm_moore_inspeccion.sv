@@ -18,7 +18,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-typedef enum logic [2:0] {mo_S0, mo_S1, mo_S2, mo_S3, mo_S4} statetype;
+
 
 module fsm_moore_inspeccion(
     input  logic clk,
@@ -26,11 +26,11 @@ module fsm_moore_inspeccion(
     input  logic P,        // Producto
     input  logic RI,       // Resultado de inspección
     output logic [1:0] E,    // Salida     
-    output statetype mo_current_state
+    
 );
 
     //estados
-    
+    typedef enum logic [2:0] {mo_S0, mo_S1, mo_S2, mo_S3, mo_S4} statetype;
     statetype state, nextstate;
     
     
@@ -90,6 +90,6 @@ module fsm_moore_inspeccion(
 
     // Asignación salida
     assign E = e_out;
-    assign mo_current_state = state;
+    
 
 endmodule
