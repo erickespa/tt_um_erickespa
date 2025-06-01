@@ -4,7 +4,7 @@ project:
   author:       "erick"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "fsm examen final serie 3"      # One line description of what your project does
-  language:     "SystemVerilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     1000000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
@@ -18,8 +18,7 @@ project:
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
     - "tt_um_erickespa.v"
-    - "fsm_mealy_protocolo.sv"
-    - "fsm_moore_inspeccion.sv"
+
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
@@ -35,10 +34,10 @@ pinout:
   ui[7]: ""
 
   # Outputs
-  uo[0]: "E[0]"
-  uo[1]: "E[1]"
-  uo[2]: "Y[0]"
-  uo[3]: "Y[1]"
+  uo[0]: "Y[0]"
+  uo[1]: "Y[1]"
+  uo[2]: ""
+  uo[3]: ""
   uo[4]: ""
   uo[5]: ""
   uo[6]: ""
