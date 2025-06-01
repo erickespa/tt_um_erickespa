@@ -1,15 +1,17 @@
 module tt_um_erickespa (
-    input  wire       clk,     // Clock (1 MHz)
-    input  wire       rst_n,   // Active-low reset
-    input  wire       ena,     // Global enable
-    input  wire [7:0] ui,      // User inputs
-    output wire [7:0] uo,      // User outputs
-    inout  wire [7:0] uio      // Bidirectional pins (not used here)
+    input  wire [7:0] ui_in,    // Dedicated inputs
+    output wire [7:0] uo_out,   // Dedicated outputs
+    input  wire [7:0] uio_in,   // IOs: Input path
+    output wire [7:0] uio_out,  // IOs: Output path
+    output wire [7:0] uio_oe,   // IOs: Enable path (active high: 0=input, 1=output)
+    input  wire       ena,      // always 1 when the design is powered, so you can ignore it
+    input  wire       clk,      // clock
+    input  wire       rst_n     // reset_n - low to reset
 );
 
     // Entradas asignadas desde ui
-    wire P  = ui[0];  // Producto
-    wire RI = ui[1];  // Resultado de inspección
+    wire P  = ui_in[0];  // Producto
+    wire RI = ui_in[1];  // Resultado de inspección
 
     // Salidas internas
     wire [1:0] E;  // Salida de FSM Moore
@@ -38,9 +40,12 @@ module tt_um_erickespa (
     );
 
     // Asignación de salidas protegida por enable
-    assign uo[1:0] = ena ? E : 2'b00;
-    assign uo[3:2] = ena ? Y : 2'b00;
-    assign uo[7:4] = 4'b0000; // No usados
-    assign uio     = 8'bzzzz_zzzz; // Pines no usados
+    assign uo_out[1:0] = ena ? E : 2'b00;
+    assign uo_out[3:2] = ena ? Y : 2'b00;
+    assign uio_out = 0;
+    assign uio_oe  = 0;
+
+      // List all unused inputs to prevent warnings
+    wire _unused = &{ena, uio_in, 1'b0};
 
 endmodule
