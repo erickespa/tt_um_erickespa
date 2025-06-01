@@ -150,7 +150,7 @@ end
     end
     
         // Asignación de salida
-    assign uo_out = Y;
+    assign uo_out = {6'b000000, Y};
     assign uio_out = 0;
     assign uio_oe  = 0;
 
