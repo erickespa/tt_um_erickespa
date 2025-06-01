@@ -18,24 +18,24 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-typedef enum logic [1:0] {
-    me_S0 = 2'd0,
-    me_S1 = 2'd1,
-    me_S2 = 2'd2,
-    me_S3 = 2'd3
-} state_t;
+
 
 module fsm_mealy_protocolo (
     input  logic        clk,
     input  logic        reset,
     input  logic [1:0]  E,
     output logic [1:0]  Y,
-    output state_t      me_current_state
+    
 );
-
+typedef enum logic [1:0] {
+    me_S0 = 2'd0,
+    me_S1 = 2'd1,
+    me_S2 = 2'd2,
+    me_S3 = 2'd3
+} state_t;
     state_t state, next_state;
 
-    assign me_current_state = state; 
+   
 
     // Registro de estado
     always_ff @(posedge clk or posedge reset) begin
