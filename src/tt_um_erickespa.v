@@ -27,7 +27,7 @@ module tt_um_erickespa (
         .P(P),
         .RI(RI),
         .E(E),
-        .mo_current_state()  // Se ignora en top
+        
     );
 
     // FSM Mealy
@@ -36,16 +36,17 @@ module tt_um_erickespa (
         .reset(reset),
         .E(E),
         .Y(Y),
-        .me_current_state()  // Se ignora en top
+        
     );
 
     // Asignación de salidas protegida por enable
-    assign uo_out[1:0] = ena ? E : 2'b00;
-    assign uo_out[3:2] = ena ? Y : 2'b00;
+    assign uo_out[1:0] = E;
+    assign uo_out[3:2] = Y;
+    assign uo_out[7:4] = 0;
     assign uio_out = 0;
     assign uio_oe  = 0;
 
       // List all unused inputs to prevent warnings
-    wire _unused = &{ena, uio_in, 1'b0};
+    wire _unused = &{ena, uio_in, ui_in[7:2], 1'b0};
 
 endmodule
